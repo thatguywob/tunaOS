@@ -9,7 +9,9 @@
 **Evidence baseline (2026-08-14):** 0 named production users and 2 named
 development/evaluation entries. The ecosystem table below records projects
 that TunaOS depends on, integrates with, or is inspired by; it is not evidence
-that those projects use TunaOS.
+that those projects use TunaOS. Do not copy counts from this paragraph into
+other documents. Run `just adoption-snapshot` to get the current count
+([ADOPTION-METRICS.md](./ADOPTION-METRICS.md#deriving-the-snapshot-3305)).
 
 ## Production Users
 

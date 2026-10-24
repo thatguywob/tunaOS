@@ -63,6 +63,34 @@ publish, and *how* the snapshot feeds roadmap decisions.
 - Ownership: **strategist** compiles; **ci-maintainer** supplies R2/Releases
   exports; **guide** publishes on tunaos.org/blog.
 
+### Deriving the snapshot (#3305)
+
+The derivable part of the snapshot is generated, not transcribed (AGENTS.md
+rule 3):
+
+```bash
+just adoption-snapshot --month 2026-10        # Markdown block for the ROADMAP
+just adoption-snapshot --month 2026-10 --json # same data, machine-readable
+just adoption-snapshot --check-mature         # Q4 adoption floor; exits 1 until met
+```
+
+`scripts/adoption-snapshot.py` reads the external production/evaluation count
+from [ADOPTERS.md](./ADOPTERS.md) (self-use rows linked to `github.com/hanthor`,
+`github.com/tuna-os` or `*.tunaos.org` are reported separately and never counted),
+stars/forks from the GitHub API, and Release asset downloads per flavor from
+the Releases API. GitHub's `download_count` is cumulative per asset, so the
+monthly column counts downloads, as of the snapshot date, of assets on
+releases published in that month. It is not a count of downloads that
+happened during the month. A failed API call stops the script; it never
+reports zero instead. The script does not measure R2 ISO downloads, docs
+analytics, install telemetry, or adoption-call conversion, and the output
+lists them as not measured. The owners above supply those figures.
+
+`--check-mature` is the falsifiable form of the adoption line in
+[Q4-MATURE-DEFINITION.md](./Q4-MATURE-DEFINITION.md). It passes only when
+ADOPTERS.md has at least one external **production** row with a link. An
+evaluation row, a self-use row, or a row without a link does not count.
+
 ## Outreach evidence
 
 The current outreach record is kept in

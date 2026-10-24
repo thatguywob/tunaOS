@@ -31,6 +31,9 @@ on:
       # The fork-config contract suite initializes the stock/fork templates.
       - 'examples/**'
       - 'experiences/**'
+      # tests/test_adoption_snapshot.py parses the live adopters tables; a
+      # renamed section heading must fail the suite, not read as 0 adopters.
+      - 'ADOPTERS.md'
       - 'build_scripts/**'
       # One entry rather than six. .github/scripts/**, changelogs.py,
       # workflows/**, green-criteria.yml, runs-on.yml and actions/** were all

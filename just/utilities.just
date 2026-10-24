@@ -254,3 +254,9 @@ clean-cache:
     echo "Pruning local build caches..."
     rm -rf .rpm-cache
     echo "Use 'podman system prune --build-cache' to prune BuildKit cache."
+
+# Derive the monthly adoption snapshot (ADOPTION-METRICS.md, #3305).
+# `just adoption-snapshot --check-mature` exits 1 until ADOPTERS.md lists an
+# external production adopter with a link (Q4-MATURE-DEFINITION.md).
+adoption-snapshot *args:
+    @python3 "{{ justfile_directory() }}/scripts/adoption-snapshot.py" {{ args }}
